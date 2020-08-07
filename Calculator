@@ -1,0 +1,170 @@
+# Define our function
+def cal():
+    operation = input('''
+Please type in the math operation you would like to complete:
++ for addition
+- for subtraction
+* for multiplication
+/ for division
+** for expo
+// for Floor Division
+''')
+
+    number_1 = int(input('Please enter the first number: '))
+    number_2 = int(input('Please enter the second number: '))
+
+    if operation == '+':
+        print('{} + {} = '.format(number_1, number_2))
+        print(number_1 + number_2)
+    elif operation == '-':
+        print('{} - {} = '.format(number_1, number_2))
+        print(number_1 - number_2)
+    elif operation == '*':
+        print('{} * {} = '.format(number_1, number_2))
+        print(number_1 * number_2)
+    elif operation == '/':
+        print('{} / {} = '.format(number_1, number_2))
+        print(number_1 / number_2)
+    elif operation == '**':
+        print('{} ** {} = '.format(number_1, number_2))
+        print(number_1 ** number_2)
+    elif operation == '//':
+        print('{} // {} = '.format(number_1, number_2))
+        print(number_1 // number_2)
+    else:
+        print('You have not typed a valid operator, please run the program again.')
+
+def square_roots():
+    from math import sqrt
+    num = input("Enter a number: ")
+    result = sqrt(int(num))
+    print('The square root of {} is {}'.format(num, result))
+
+def Quadratic_Equations():
+    import cmath
+    a = float(input('enter number a: '))
+    b = float(input('enter number b: '))
+    c = float(input('enter number c: '))
+    d = b ** 2 - 4 * a * c     #discriminant formula
+    sol1 = (-b - cmath.sqrt(d)) / (2 * a)
+    sol2 = (-b + cmath.sqrt(d)) / (2 * a)
+    print('the solution or solution are {0} and {1}'.format(sol1, sol2))
+
+def trig():
+    x = input('Enter the function sin,cos,tan,arcsin,arccos,arctan: ')
+    number = input('Enter the degrees or radians: ')
+    x = x.lower()   #converts all the characters into lower case
+
+    import math
+    if x == 'sin':
+        result = math.sin(math.radians(float(number)))
+        print('The answer is:{}'.format(result))
+    elif x == 'cos':
+        result = math.cos(math.radians(float(number)))
+        print('The answer is:{}'.format(result))
+    elif x == 'tan':
+        result = math.tan(math.radians(float(number)))
+        print('The answer is:{}'.format(result))
+    elif x == 'arcsin':
+        RD = input('Enter R for Radians or D for degrees: ')
+        if RD == 'R':
+            result = math.asin(float(number))
+            print('the answer is:{}'.format(result))
+        else:
+            result = math.asin(float(number))
+            y = float(result * 180 / math.pi)
+            print('the answer is:{}'.format(y))
+    elif x == 'arccos':
+        RD = input('Enter R for Radians or D for degrees: ')
+        if RD == 'R':
+            result = math.acos(float(number))
+            print('the answer is:{}'.format(result))
+        else:
+            result = math.acos(float(number))
+            y = float(result * 180 / math.pi)
+            print('the answer is:{}'.format(y))
+    elif x == 'arctan':
+        RD = input('Enter R for Radians or D for degrees: ')
+        if RD == 'R':
+            result = math.atan(float(number))
+            print('the answer is:{}'.format(result))
+        else:
+            result = math.atan(float(number))
+            y = float(result * 180 / math.pi)
+            print('the answer is:{}'.format(y))
+    else:
+        print('Please check if you entered the crrect number')
+
+def log():
+    x = input('Enter e for natural logarithms, 10 for log base 10, log for variable base and alog for taylor series: ')
+    a = input('Enter the number: ')
+    x = x.lower()
+
+    import math
+    if x == 'log':
+        base = input('Enter the base: ')
+        result = math.log(float(a), float(base))
+        print('Logarithm base {} of {} is:{}'.format(base, a, result))
+    elif x == '10':
+        result = math.log10(float(a))
+        print('Logarithm base 10 of {} is:{}'.format(a, result))
+    elif x == 'e':
+        result = math.log(float(a))
+        print('Natural logarithm of {} is:{}'.format(a, result))
+    elif x == 'alog':
+        result = math.log1p(float(a))
+        print('The logarithm(1+a) of {} is:{}'.format(a, result))
+    else:
+        print('Make sure you entered the values correctly. Re-try')
+
+def graph():
+    import matplotlib.pyplot as plt
+
+    x_str = ['1', '3']
+    y_str = ['-1', '-4']
+    # convert strings to ints
+    x_int = [int(x) for x in x_str]
+    y_int = [int(y) for y in y_str]
+
+    plt.subplot(2,1,1)
+    plt.plot(x_str, y_str)
+    plt.title('Plotting strings')
+
+    plt.subplot(2,1,2)
+    plt.plot(x_int, y_int)
+    plt.title('Plotting ints')
+
+    plt.show()
+    
+
+
+def execute_choice_function(choice):
+  if choice == 1:
+    cal()
+  elif choice == 2:
+    square_roots()
+  elif choice == 3:
+    Quadratic_Equations()
+  elif choice == 4:
+    trig()
+  elif choice == 5:
+      log()
+  elif choice == 6:
+      graph()
+  else:
+      print('Please enter numbers between 1 and 6')
+      
+print('Enter what type of calculation you want to do')
+print('Enter 1 for simple calculations, Enter 2 for square roots, Enter 3 for Quadratic equations, Enter 4 for Trig, Enter 5 for logs, 6 for graphs')
+rangeTop = 6
+rangeBottom = 1
+try:
+    b = int(input("Enter any number between {} and {}: ".format(rangeBottom, rangeTop)))
+except ValueError:
+    print('Error: input must be an integer')
+else:
+    while not rangeBottom <= b <= rangeTop:
+        print('choice must be between {} and {}: '.format(rangeBottom, rangeTop))
+        b = int(input("Enter any number between {} and {}: ".format(rangeBottom, rangeTop)))
+    else:
+        execute_choice_function(b)
